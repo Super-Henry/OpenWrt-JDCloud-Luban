@@ -20,7 +20,7 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/openwrt/openwrt
+  REPO_URL: https://github.com/Super-Henry/openwrt
   REPO_BRANCH: v22.03.3
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
