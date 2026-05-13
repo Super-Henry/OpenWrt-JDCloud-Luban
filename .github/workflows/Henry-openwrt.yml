@@ -61,6 +61,18 @@ jobs:
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
+    # ====================== 自动应用 patches 补丁 ======================
+    - name: Apply custom patches (DTS等)
+      run: |
+        cd openwrt
+        if [ -d "../patches" ] && [ "$(ls -A ../patches/*.patch 2>/dev/null)" ]; then
+          echo "正在应用自定义补丁..."
+          for patch in ../patches/*.patch; do
+            git apply "$patch"
+          done
+        fi
+    # ====================================================================
+
     - name: Load custom feeds
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
